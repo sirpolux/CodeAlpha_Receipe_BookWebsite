@@ -7,12 +7,17 @@ import { ReceipeHome } from './ReceipeHome'
 const Home = () => {
 
     const [page,setPage]=useState(1);
+    const [activeItem,setActiveItem]=useState("Coconut Jollof Rice")
+    const renderView=(view)=>{
+        setPage(view)
+    }
 
     const myRecipies=[
-        {
+        {   id:"d1",
             name:"Coconut Jollof Rice",
-            img:"https://desirerecipes.com/wp-content/uploads/2022/02/image-24.jpgpoundes",
+            img:"./coconut-jollof-rice.jpeg",
             text:"If the want to surprise someone, this meal I call the surprise Jollof Rice should be your first choice. Your guests think they are about to eat the classic Jollof Rice but are pleasantly surprised when the meal hits the tongue!",
+            notesTitle:"Suggestions",
             notes:["For the tastiest Coconut Jollof Rice, make your own Coconut Milk if you can buy coconuts where you live.",
                     "Prepare the Tomato Stew base if you don’t already have some. You should always have this in your freezer. 🙂",
                     "Precook or parboil the rice",
@@ -40,27 +45,41 @@ const Home = () => {
 
         },
         {
-            name:"",
-            img:"",
-            text:"",
-            notes:[],
-            ingredients:[],
-            instructions:[],
+            id:"d2",
+            name:"Egg Fried Rice",
+            img:"./egg-fried-rice.jpeg",
+            text:"This is the recipe you want to go to when you need a quick and easy rice recipe. If you are on a keto diet, replace the rice with Cauliflower Rice and skip the Maggi sauce. The Maggi sauce and soy sauce contain MSG so if you are allergic or you don’t want to eat it, skip these completely.",
+            notesTitle:"Things to Consider/Suggestions",
+            notes:["Serve with Onion baked Chicken Marinated with a blend of: White onions, Thyme, Black Pepper, Suya Spice, Olive oil", "The Maggi sauce and soy sauce contain MSG so if you are allergic or you don’t want to eat it, skip these completely."],
+            ingredients:["3 cups boiled white rice", "5 Eggs", "Maggi long neck seasoning or soy sauce", "1 red onion", "Olive oil", "Red Pepper", "Green Pepper", "½ teaspoon thyme","½ teaspoon onion powder", "1 teaspoon black pepper","½ teaspoon salt"  ],
+            instructions:["Mix the thyme, onion powder, black pepper and salt. Divide into 5 and set aside.",
+                    "Break the eggs one by one, beat and season with the mixed seasoning.",
+                    "Marinate the chicken quarters with the onion blend, cover and place in the fridge for at least 30 minutes.",
+                    "Bake in a preheated oven at 200 deg C (400F) or till golden and no blood is in sight.",
+                    "Pour some olive oil in a frying pan.",
+                    "When hot, add one fifth of the onions (diced), stir for a bit.",
+                    "Add the peppers (diced), stir for a bit and add one fifth of the boiled rice. Stir for at most 1 minute.",
+                    "Add a few dashes of the Maggi Sauce, and pour in one of the beaten and seasoned eggs, stir gently till egg clumps form. Watch the video below for how to do this perfectly."
+                    ],
             origin:"default",
             videoAvailable:true,
-            videoSrc:"https://youtu.be/4W5jTCzFGrs"
-        }
+            videoSrc:"https://youtu.be/2yRxWJmQXFA"
+        },
 
     ];
+    // {
+    //     name:"",
+    //     img:"",
+    //     text:"",
+    //     notes:[],
+    //     ingredients:[],
+    //     instructions:[],
+    //     origin:"default",
+    //     videoAvailable:true,
+    //     videoSrc:"https://youtu.be/4W5jTCzFGrs"
+    // }
 
-    const [myRecipes,setMyReceipes]=useState(
-        [
-            {
-                name:"Pounded yam and Egusi Soup",
-                img:"https://desirerecipes.com/wp-content/uploads/2022/02/image-24.jpgpoundes"
-            },
-        ]
-    )
+    const [myRecipes,setMyReceipes]=useState([...myRecipies])
 
   return (
     <div className='container'>
@@ -68,9 +87,9 @@ const Home = () => {
         <div className='content'>
             {
                 page===1?
-                <HomeContent/>:
+                <HomeContent nav={renderView}/>:
                 page===2?
-                <ReceipeHome/>:
+                <ReceipeHome nav={renderView} recepies={myRecipes} activeItem={activeItem}/>:
                 null
             }
             

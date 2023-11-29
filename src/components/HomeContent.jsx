@@ -1,15 +1,12 @@
 import React, { useState } from 'react'
 import './home.css'
+import AppName from './AppName';
 
-const HomeContent = () => {
-
-    
+const HomeContent = ({nav}) => {
   return (
     <>
         <div className="home-intro p-2">
-            <h2 className="app-name">
-                FlavorFiesta
-            </h2>
+          <AppName/>
             <span className="catchy-text">
             Unleash your inner chef and embark on a culinary adventure with our recipe wonderland! Whether you're a seasoned pro or a kitchen newbie, FlavorFiesta is your passport to gastronomic bliss.
             </span>
@@ -18,7 +15,7 @@ const HomeContent = () => {
             </span>
         </div>
         <div className="option-nav">
-            <button>Recipies</button>
+            <button onClick={()=>nav(2)}>Recipies</button>
             <button>Add Recipe</button>
         </div>
     </>
